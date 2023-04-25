@@ -1,0 +1,143 @@
+/* Fuentes */
+body {
+	font-family: Arial, sans-serif;
+}
+
+/* Formulario */
+form {
+	margin: 0 auto;
+	width: 50%;
+	padding: 20px;
+	border: 1px solid #7544d6;
+	border-radius: 5px;
+	text-align: center;
+}
+
+/* Elementos de entrada de archivo y selección de archivo */
+input[type="file"],
+select {
+	text-align: center;
+	padding: 10px;
+	font-size: 16px;
+	border: 1px solid #d1d1d1;
+	border-radius: 5px;
+	width: 100%;
+	box-sizing: border-box;
+	margin-bottom: 20px;
+	background-color: #f9f9f9;
+	color: #555;
+}
+
+/* Botón de enviar */
+input[type="submit"] {
+	text-align: center;
+	background-color: #4caf50;
+	color: white;
+	padding: 12px 24px;
+	border: none;
+	border-radius: 5px;
+	font-size: 18px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+input[type="submit"]:hover {
+	background-color: #3e8e41;
+}
+
+/* Botón */
+button {
+	background-color: #7544d6;
+	color: white;
+	padding: 12px 24px;
+	border: none;
+	border-radius: 5px;
+	font-size: 18px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+button:hover {
+	background-color: #5c41cb;
+}
+
+/* Contenido del archivo */
+#fileContent {
+	white-space: pre-wrap;
+	margin: 0 auto;
+	width: 50%;
+	padding: 20px;
+	border: 1px solid #7544d6;
+	border-radius: 5px;
+	background-color: #f9f9f9;
+	color: #555;
+}
+
+/* Etiquetas */
+label {
+	display: block;
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 10px;
+	color: #555;
+}
+
+/* Resultado */
+#result {
+	margin: 0 auto;
+	width: 50%;
+	padding: 20px;
+	border: 1px solid #7544d6;
+	border-radius: 5px;
+	background-color: #f9f9f9;
+	color: #555;
+}
+
+#result a {
+	background-color: #7544d6;
+	color: white;
+	padding: 12px 24px;
+	border: none;
+	border-radius: 5px;
+	font-size: 18px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	display: flex;
+	margin-top: 10px;
+}
+
+#result a:hover {
+	background-color: #5c41cb;
+}
+
+/* Contenedor del resultado */
+.resultado {
+	margin: 0 auto;
+	width: 50%;
+	padding: 20px;
+	background-color: #f9f9f9;
+	color: #555;
+}
+
+.entrada {
+	margin: 0 auto;
+	width: 50%;
+	padding: 20px;
+	background-color: #f9f9f9;
+	color: #555;
+}
+
+/* Contenedor de carga */
+.loading {
+	margin: 0 auto;
+	width: 50%;
+	padding: 20px;
+	background-color: #f9f9f9;
+	color: #555;
+}
+
+h1 {
+	font-size: 50px;
+	padding: 20px;
+	text-align: center;
+}

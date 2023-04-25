@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>ADAII</title>
+  <link rel="stylesheet" href="styles.css">
+  
+</head>
+
+<body>
+  <h1>Proyecto Programación Dinámica y Algoritmos Voraces</h1>
+  <form>
+    <label for="fileInput">Selecciona un archivo:</label>
+    <input type="file" id="fileInput">
+    <label for="opcion">Selecciona el Algoritmo:</label>
+    <select id="opcion">
+      <option value="opcion1">Fuerza Bruta</option>
+      <option value="opcion2">Voraz</option>
+      <option value="opcion3">Dinamico</option>
+      <option value="opcion4">Dinamico Modificado</option>
+    </select>
+    <button type="button" onclick="showFileContent()">Mostrar resultados</button>
+  </form>
+  <div class= "loading" id="loading"></div>
+  <label class="entrada">Entrada:</label>
+  <div id="fileContent"></div>
+  <label class="resultado">Salida:</label>
+  <div id="result"></div>
+
+  <script src="bruto.js"></script>
+  <script src="dinamico.js"></script>
+  <script src="voraz.js"></script>
+  <script src="dinamicoPorPaquetes.js"></script>
+  <script src="read.js"></script>
+</body>
+
+</html>
