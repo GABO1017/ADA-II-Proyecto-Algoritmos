@@ -21,7 +21,7 @@ for (let buyer = 1; buyer <= buyers.length; buyer++) {
   }
 }
 
-let bestActions = new Array(buyers.length ).fill(0);
+let bestActions = new Array(buyers.length).fill(0);
 let buyer = buyers.length;
 let actions = knapsackCapacity;
 let totalBenefit = matrix[buyer][actions].value;

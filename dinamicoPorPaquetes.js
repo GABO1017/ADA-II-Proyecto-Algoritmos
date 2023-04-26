@@ -1,59 +1,41 @@
-function accionesPD2(knapsackCapacity, n, buyers, packages) {
-  // Crear la matrix de results
-  const matrix = Array.from({ length: n + 1 }, () =>
-    Array.from({ length: Math.floor((knapsackCapacity + 1) / packages) + 1 }, () => ({
-      total: 0,
-      amountActions: 0,
-    }))
-  );
-  //cambia el indice por actionsXPackage
-  const actionsXPackage = Math.floor(knapsackCapacity / packages);
-
-  for (let offer = 1; offer <= n; offer++) {
-    for (let actions = 1; actions <= actionsXPackage; actions++) {
-      let maxBenefit = matrix[offer - 1][actions].total;
+function accionesPD2(buyers, knapsackCapacity, packages){
+  const matrix = [];
+  const newActions = Math.floor(knapsackCapacity/packages)
+  for (let i = 0; i <= buyers.length; i++) {
+    matrix[i] = new Array(newActions + 1).fill({ value: 0, lastAction: 0 });
+  }
+  
+  for (let buyer = 1; buyer <= buyers.length; buyer++) {
+    const [value, maxActions, minActions] = buyers[buyer-1];
+    for (let actions = 1; actions <= newActions; actions++) {
+      let maxBenefit = matrix[buyer-1][actions].value;
       let lastAction = 0;
-
-      if (buyers[offer - 1][1] < packages && actions === 1) {
-
-        maxBenefit = buyers[offer - 1][0];
-        lastAction = 1;
-      } else {
-          
-        for (
-          let takenActions = Math.floor(buyers[offer - 1][2] / packages);
-          takenActions <= Math.min(actions, Math.floor(buyers[offer - 1][1] / packages));
-          takenActions++
-        ) {
-          const benefit =
-            buyers[offer - 1][0] * takenActions * packages +
-            matrix[offer - 1][actions - takenActions].total;
-
-          if (benefit > maxBenefit) {
-            maxBenefit = benefit;
-            lastAction = takenActions;
-          }
+      for (let k = Math.floor(minActions/packages); k <= Math.min(Math.floor(maxActions/packages), actions); k++) {
+        const benefit = matrix[buyer-1][actions-k].value + k*value*packages;
+        if (benefit > maxBenefit) {
+          maxBenefit = benefit;
+          lastAction = k;
         }
       }
-
-      matrix[offer][actions].total = maxBenefit;
-      matrix[offer][actions].amountActions = lastAction;
+      matrix[buyer][actions] = { value: maxBenefit, lastAction };
     }
   }
 
-  const actionsAssignment = [];
-  let actualOffer = n;
-  let remainingActions = actionsXPackage;
-
-  while (actualOffer > 0) {
-    const amountTaken = matrix[actualOffer][remainingActions].amountActions;
-    const takenActions = amountTaken * packages;
-    actionsAssignment.unshift(takenActions);
-
-    actualOffer--;
-    remainingActions -= amountTaken;
+  let actionsAssignment = new Array(buyers.length).fill(0);
+  let buyer = buyers.length;
+  let actions = Math.floor(knapsackCapacity/packages);
+  let totalBenefit = matrix[buyer][actions].value;
+  
+  while (buyer > 0 && actions > 0) {
+    const { lastAction } = matrix[buyer][actions];
+    if (lastAction > 0) {
+      actionsAssignment[buyer-1] = lastAction*packages;
+      actions -= lastAction;
+    }
+    buyer--;
   }
 
-  const outcome = [matrix[n][actionsXPackage].total, ...actionsAssignment];
-  return outcome;
+
+  console.log(actionsAssignment);
+  return [totalBenefit, ...actionsAssignment];
 }

@@ -24,9 +24,22 @@ function showFileContent() {
     const n = parseInt(lines[2]);
     const buyers = lines.slice(3).map((line) => line.split(',').map(Number));
 
+
     // Verificar si el último elemento es un número entero y guardarlo en una constante
-    let lastElement = buyers.pop();
-    const lastInt = (typeof lastElement === 'number' && Number.isInteger(lastElement)) ? lastElement : null;
+    function verificar() {
+      if (file.name.endsWith('.psub')) {
+        console.log("entre");
+        let newBuyers = buyers;
+        let lastElement = newBuyers.pop();
+
+        return [newBuyers, lastElement]
+      } else {
+        return [0,0]
+      }
+    }
+
+    const [newBuyers_, lastElement_] = verificar();
+
 
     const selectedFunction = document.getElementById('opcion').value;
 
@@ -40,13 +53,13 @@ function showFileContent() {
       result = accionesPD1(buyers, A);
       console.log(accionesPD1(buyers, A));
     } else if (selectedFunction === 'opcion4') {
-      result = accionesPD2( A, n, buyers,parseInt(lastElement));
+      result = accionesPD2(newBuyers_, A, parseInt(lastElement_));
     }
 
     const resultDiv = document.getElementById('result');
     resultDiv.textContent = 'El resultado es: ' + result.join(', ');
 
-    // Escribir el resultado en el archivo
+
     const output = result.join('\n');
     const blob = new Blob([output], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);

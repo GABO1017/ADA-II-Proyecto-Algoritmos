@@ -1,4 +1,5 @@
 function accionesFB(A, B, n, list) {
+  console.log(list.length)
   let values = list.map((comprador) => comprador[1]);
   let salesList = [];
 
